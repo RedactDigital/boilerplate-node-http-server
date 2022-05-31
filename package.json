@@ -1,0 +1,70 @@
+{
+  "name": "vpm-solutions-api",
+  "version": "1.0.0",
+  "main": "bin/www",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vpm-solutions/vpm-solutions-api"
+  },
+  "author": {
+    "name": "Patrick Rizzardi",
+    "email": "patrick@redact.digital",
+    "url": "https://redact.digital"
+  },
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "NODE_ENV=test npm run migrate:fresh && NODE_ENV=test npm run seed && NODE_ENV=test jest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "start": "npm i && nodemon -r ./globals bin/www",
+    "worker": "npm i && nodemon -r ./globals bin/worker",
+    "make:keys": "node -r ./globals ./app/console/scripts/generateKeyPair.js",
+    "db": "bash scripts/sequelize.sh",
+    "migrate": "npx sequelize db:migrate",
+    "migrate:fresh": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
+    "make:migration": "npx sequelize migration:create",
+    "make:seed": "npx sequelize seed:generate",
+    "seed": "npx sequelize db:seed:all"
+  },
+  "dependencies": {
+    "aes-encryption": "^1.0.4",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bull": "^4.8.3",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.4.0",
+    "geoip-lite": "^1.4.5",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "libphonenumber-js": "^1.9.53",
+    "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "rate-limit-redis": "^3.0.1",
+    "redis": "^4.1.0",
+    "request-ip": "^2.1.3",
+    "sequelize": "^6.19.0",
+    "socket.io-client": "^4.5.0",
+    "toobusy-js": "^0.5.1",
+    "validatorjs": "^3.22.1",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "@bull-board/express": "^3.11.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "sequelize-cli": "^6.4.1",
+    "sequelize-mock": "^0.10.2",
+    "sqlite3": "^5.0.8",
+    "supertest": "^6.2.3"
+  }
+}

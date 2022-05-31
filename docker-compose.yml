@@ -1,0 +1,37 @@
+# Initializes a new nodejs project with docker
+
+version: '3.7'
+services:
+  api:
+    image: node:18.0.0
+    user: 1000:1000
+    container_name: vpmsolutions-api
+    restart: unless-stopped
+    working_dir: /var/www
+    command: bash -c "npm install --no-audit && npm run migrate && npm run make:keys && npm start"
+    ports:
+      - '${PORT}:${PORT}'
+    volumes:
+      - ./:/var/www
+    networks:
+      - app
+
+  worker:
+    depends_on:
+      - api
+    image: node:18.0.0
+    user: 1000:1000
+    container_name: crypto-worker
+    restart: unless-stopped
+    working_dir: /var/www
+    command: bash -c "npm run worker"
+    ports:
+      - '${WORKER_PORT}:${WORKER_PORT}'
+    volumes:
+      - ./:/var/www
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
