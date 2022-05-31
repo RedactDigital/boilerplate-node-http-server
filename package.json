@@ -1,10 +1,10 @@
 {
-  "name": "vpm-solutions-api",
+  "name": "boilerplate-node-http-server",
   "version": "1.0.0",
   "main": "bin/www",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vpm-solutions/vpm-solutions-api"
+    "url": "https://github.com/RedactDigital/boilerplate-node-http-server"
   },
   "author": {
     "name": "Patrick Rizzardi",
